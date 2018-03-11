@@ -17,9 +17,9 @@
 
 #define INTERRUPTS 13
 
-// Áøµ¿ ¼¾¼­, ¾Ğ·Â ¼¾¼­ °³¼ö
+// ì§„ë™ ì„¼ì„œ, ì••ë ¥ ì„¼ì„œ ê°œìˆ˜
 #define NUM_OF_INPUT 5
-// ·¹ÄÚµå Å©±â(°³¼ö)
+// ë ˆì½”ë“œ í¬ê¸°(ê°œìˆ˜)
 #define RECORD_SIZE 600
 
 // analog index
@@ -39,37 +39,37 @@
 #define RA  567
 #define SI  505
 
-// ¾Ğ·Â¼¾¼­·ÎºÎÅÍ ÀĞ¾îµéÀÌ´Â ¾Æ³¯·Î±×°ª
+// ì••ë ¥ì„¼ì„œë¡œë¶€í„° ì½ì–´ë“¤ì´ëŠ” ì•„ë‚ ë¡œê·¸ê°’
 __IO uint32_t ADC_DualConvertedValueTab[NUM_OF_INPUT];
 
-// ÀÎÅÍ·´Æ® 2¹ø ¹æÁö
+// ì¸í„°ëŸ½íŠ¸ 2ë²ˆ ë°©ì§€
 uint8_t DuplicatedInterrupt[INTERRUPTS];
 
-// ¹öÆ° Å¬¸¯ ¿©ºÎ, ÀÎÅÍ·´Æ® 2¹ø ¹æÁö
+// ë²„íŠ¼ í´ë¦­ ì—¬ë¶€, ì¸í„°ëŸ½íŠ¸ 2ë²ˆ ë°©ì§€
 uint8_t ButtonEvent[NUM_OF_INPUT];
 
-// °¢ Áøµ¿¼¾¼­¿¡ ÇÒ´çµÈ ÁÖÆÄ¼ö(=À½)
+// ê° ì§„ë™ì„¼ì„œì— í• ë‹¹ëœ ì£¼íŒŒìˆ˜(=ìŒ)
 uint32_t PitchOfSound[NUM_OF_INPUT];
 
-// ÁÖÆÄ¼ö(=À½)¸¦ ÀúÀåÇÏ´Â ¹è¿­
+// ì£¼íŒŒìˆ˜(=ìŒ)ë¥¼ ì €ì¥í•˜ëŠ” ë°°ì—´
 uint32_t RecordOfSound[RECORD_SIZE];
 
-// ÇöÀç ¹è¿­ À§Ä¡
+// í˜„ì¬ ë°°ì—´ ìœ„ì¹˜
 uint32_t CurrentRecordIndex;
 
-// ÇöÀç ³ìÀ½ »óÅÂ
+// í˜„ì¬ ë…¹ìŒ ìƒíƒœ
 uint8_t RecordEnable;
 
-// ·¹ÄÚµå ½ÃÀÛ À§Ä¡
+// ë ˆì½”ë“œ ì‹œì‘ ìœ„ì¹˜
 uint32_t RecordStartIndex;
 
-// ·¹ÄÚµå ³¡ À§Ä¡
+// ë ˆì½”ë“œ ë ìœ„ì¹˜
 uint32_t RecordEndIndex;
 
-// Àç»ı ¿©ºÎ
+// ì¬ìƒ ì—¬ë¶€
 uint8_t OnPlay;
 
-// Àç»ı À§Ä¡
+// ì¬ìƒ ìœ„ì¹˜
 uint8_t PlayIndex;
 
 void RCC_Configuration(void);
@@ -82,7 +82,7 @@ void DMA_Configuration(void);
 void ADC_Configuration(void);
 void PWM_Configuration(void);
 
-// ¾Ğ·Â ¼¾¼­°ªÀ» ÀÔ·Â¹Ş¾Æ ´ëÀÀÇÏ´Â ÁÖÆÄ¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+// ì••ë ¥ ì„¼ì„œê°’ì„ ì…ë ¥ë°›ì•„ ëŒ€ì‘í•˜ëŠ” ì£¼íŒŒìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 uint32_t GeneratePitch(uint32_t analogValue);
 
 void InitLCD(void);
@@ -90,7 +90,7 @@ void Set_Sample(void);
 
 void ClearRecord(void);
 
-// Áøµ¿¼¾¼­·ÎºÎÅÍ ÀĞ¾îµéÀÎ ¾Æ³¯·Î±×°ªÀ¸·ÎºÎÅÍ °¢ Áøµ¿¼¾¼­¿¡ ÁÖÆÄ¼ö(=À½)À» ÇÒ´çÇÑ´Ù.
+// ì§„ë™ì„¼ì„œë¡œë¶€í„° ì½ì–´ë“¤ì¸ ì•„ë‚ ë¡œê·¸ê°’ìœ¼ë¡œë¶€í„° ê° ì§„ë™ì„¼ì„œì— ì£¼íŒŒìˆ˜(=ìŒ)ì„ í• ë‹¹í•œë‹¤.
 void Set_PitchOfSound(void);
 
 static void Delay(volatile unsigned int nTime);
@@ -98,10 +98,10 @@ static void Delay(volatile unsigned int nTime);
 void LED_ON(uint16_t);
 void LED_OFF(uint16_t);
 
-// ÁÖÆÄ¼ö(=À½)¸¦ ÀÔ·Â¹Ş¾Æ ÇØ´çÇÏ´Â À½À» Ãâ·ÂÇÑ´Ù.
+// ì£¼íŒŒìˆ˜(=ìŒ)ë¥¼ ì…ë ¥ë°›ì•„ í•´ë‹¹í•˜ëŠ” ìŒì„ ì¶œë ¥í•œë‹¤.
 void Sound(unsigned int);
 
-// µğ¹ö±ëÀ» À§ÇÑ LCD Ãâ·Â
+// ë””ë²„ê¹…ì„ ìœ„í•œ LCD ì¶œë ¥
 void PrintLabelForDebuging(void);
 void printAnalogValue(int, int);
 
@@ -160,15 +160,15 @@ void ClearRecord(void) {
 }
 
 /*
- * ¾Ğ·Â ¼¾¼­ °ª
- * 4096 µµ
- * 3978 ·¹
- * 3878 ¹Ì
- * 3809 ÆÄ
- * 3760 ¼Ö
- * 3705 ¶ó
- * 3648 ½Ã
- * 3613 µµ
+ * ì••ë ¥ ì„¼ì„œ ê°’
+ * 4096 ë„
+ * 3978 ë ˆ
+ * 3878 ë¯¸
+ * 3809 íŒŒ
+ * 3760 ì†”
+ * 3705 ë¼
+ * 3648 ì‹œ
+ * 3613 ë„
  */
 uint32_t GeneratePitch(uint32_t analogValue) {
 	uint32_t pitch;
@@ -641,12 +641,12 @@ void EXTI9_5_IRQHandler(void) {
 		if (DuplicatedInterrupt[8] == 0) {
 			++DuplicatedInterrupt[8];
 
-			if (RecordEnable) { // ³ìÀ½ÁßÀÌ¸é ³¡³¿
+			if (RecordEnable) { // ë…¹ìŒì¤‘ì´ë©´ ëëƒ„
 				InitLCD();
 				RecordEndIndex = CurrentRecordIndex;
 				RecordEnable = FALSE;
 				LED_OFF(GPIO_Pin_7);
-			} else { 			// ³ìÀ½½ÃÀÛ
+			} else { 			// ë…¹ìŒì‹œì‘
 				ClearRecord();
 				LCD_Clear(WHITE);
 				LCD_ShowString(60, 30, "Recoding..", RED, WHITE);
@@ -668,7 +668,7 @@ void TIM2_IRQHandler(void) {
 			DuplicatedInterrupt[i] = 0;
 		}
 
-		if (OnPlay) { // Àç»ıÁßÀÌ¸é À½ Ãâ·Â
+		if (OnPlay) { // ì¬ìƒì¤‘ì´ë©´ ìŒ ì¶œë ¥
 
 			if (RecordOfSound[PlayIndex] != 0) {
 				LED_ON(GPIO_Pin_2);
@@ -737,14 +737,14 @@ void EXTI15_10_IRQHandler(void) {
 		if (DuplicatedInterrupt[12] == 0) {
 			++DuplicatedInterrupt[12];
 
-			// ³ìÀ½ÁßÀÌ¸é Á¾·á
+			// ë…¹ìŒì¤‘ì´ë©´ ì¢…ë£Œ
 			if (RecordEnable)
 				return;
 
-			if (OnPlay) { // Àç»ıÁßÀÌ¸é Á¾·á
+			if (OnPlay) { // ì¬ìƒì¤‘ì´ë©´ ì¢…ë£Œ
 				InitLCD();
 				OnPlay = FALSE;
-			} else { // Àç»ıÁßÀÌÁö ¾ÊÀ¸¸é Àç»ı ½ÃÀÛ
+			} else { // ì¬ìƒì¤‘ì´ì§€ ì•Šìœ¼ë©´ ì¬ìƒ ì‹œì‘
 				PlayIndex = 0;
 				LCD_ShowString(60, 30, "Playing...", BLUE, WHITE);
 				OnPlay = TRUE;
